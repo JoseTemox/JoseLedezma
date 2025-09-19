@@ -1,0 +1,15 @@
+<div class="dropdown-container">
+  <button class="dropdown-toggle" (click)="toggleDropdown()">
+    Opciones
+    <span class="arrow-down">&#9660;</span>
+  </button>
+
+  @if(isDropdownOpen){
+
+  <ul class="dropdown-menu">
+    @for (item of dropdownList; track item) {
+    <li (click)="selectOption(item.value)">{{ item.label }}</li>
+    }
+  </ul>
+  }
+</div>

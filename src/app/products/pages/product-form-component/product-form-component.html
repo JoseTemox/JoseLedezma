@@ -1,0 +1,96 @@
+<!-- <div class="form-container"> -->
+<div class="form-card">
+  <h2>Formulario de Registro</h2>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="form-fields">
+      <div class="form-group">
+        <label for="id">ID</label>
+        <input
+          type="text"
+          id="id"
+          formControlName="id"
+          [class.has-error]="
+            registrationForm.get('id')?.invalid &&
+            (registrationForm.get('id')?.dirty ||
+              registrationForm.get('id')?.touched)
+          "
+        />
+        @if(registrationForm.get('id')?.invalid &&
+        (registrationForm.get('id')?.dirty ||
+        registrationForm.get('id')?.touched)){
+
+        <span class="error-message">ID no válido!</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" id="name" formControlName="name" />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Descripción</label>
+        <input
+          type="text"
+          id="description"
+          formControlName="description"
+          [class.has-error]="
+            registrationForm.get('description')?.invalid &&
+            (registrationForm.get('description')?.dirty ||
+              registrationForm.get('description')?.touched)
+          "
+        />
+        @if(registrationForm.get('description')?.invalid &&
+        (registrationForm.get('description')?.dirty ||
+        registrationForm.get('description')?.touched) ){
+
+        <span class="error-message">Este campo es requerido!</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="logo">Logo</label>
+        <input
+          type="text"
+          id="logo"
+          formControlName="logo"
+          [class.has-error]="
+            registrationForm.get('logo')?.invalid &&
+            (registrationForm.get('logo')?.dirty ||
+              registrationForm.get('logo')?.touched)
+          "
+        />
+        @if(registrationForm.get('logo')?.invalid &&
+        (registrationForm.get('logo')?.dirty ||
+        registrationForm.get('logo')?.touched) ){
+
+        <span class="error-message">Este campo es requerido!</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="releaseDate">Fecha Liberación</label>
+        <input type="date" id="releaseDate" formControlName="releaseDate" />
+      </div>
+
+      <div class="form-group">
+        <label for="revisionDate">Fecha Revisión</label>
+        <input type="date" id="revisionDate" formControlName="revisionDate" />
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="onReset()">
+        Reiniciar
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="registrationForm.invalid"
+      >
+        Enviar
+      </button>
+    </div>
+  </form>
+</div>
+<!-- </div> -->

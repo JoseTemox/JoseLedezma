@@ -1,0 +1,112 @@
+<div class="toolbar">
+  <input type="text" placeholder="Search..." />
+  @if(isAdminMode()){
+
+  <button class="add-button" (click)="newProduct()">Agregar</button>
+  }
+</div>
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Logo</th>
+        <th>Nombre del producto</th>
+        <th>Descripción</th>
+        <th>Fecha de liberación</th>
+        <th>Fecha de reestructuración</th>
+        @if(isAdminMode()){
+
+        <th></th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (product of pageData(); track product) {
+
+      <tr>
+        <td>
+          <div class="logo-circle">Logo</div>
+          <!-- <div class="logo-circle">{{ product.initials }}</div> -->
+        </td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.date_release }}</td>
+        <!-- <td>{{ product.releaseDate | date : 'dd/MM/yyyy' }}</td> -->
+        <td>{{ product.date_revision }}</td>
+        <!-- <td>{{ product.reestructureDate | date : 'dd/MM/yyyy' }}</td> -->
+        @if(isAdminMode()){
+
+        <td>
+          <!-- <button class="options-button">...</button> -->
+          <app-product-drop-down-menu />
+        </td>
+        }
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+<div class="footer-pagination">
+  <div class="results-info">
+    <span>{{ visibleItemsRange }}</span>
+  </div>
+  <button
+    (click)="goToPage(1)"
+    [disabled]="currentPage === 1"
+    class="page-button"
+  >
+    &lt;&lt;
+  </button>
+  <button
+    (click)="goToPage(currentPage - 1)"
+    [disabled]="currentPage === 1"
+    class="page-button"
+  >
+    &lt;
+  </button>
+
+  <span class="page-indicator"
+    >Página {{ currentPage }} de {{ totalPages }}</span
+  >
+
+  <button
+    (click)="goToPage(currentPage + 1)"
+    [disabled]="currentPage === totalPages"
+    class="page-button"
+  >
+    &gt;
+  </button>
+  <button
+    (click)="goToPage(totalPages)"
+    [disabled]="currentPage === totalPages"
+    class="page-button"
+  >
+    &gt;&gt;
+  </button>
+</div>
+
+<div class="footer-pagination">
+  <span>{{ totalItems }} Resultados</span>
+  <select [ngModel]="pageSize" (change)="pageSizeChange($event)">
+    @for (option of pageSizeOptions; track $index) {
+
+    <option [value]="option">
+      {{ option }}
+    </option>
+    }
+  </select>
+
+  <!--  -->
+  <!-- <span>{{ totalResult() }} Resultados</span>
+  <select (change)="showSelectionBy()" [(ngModel)]="selected">
+    @for (result of showResults(); track result) {
+
+    <option [value]="result">{{ result }}</option>
+    }
+  </select>
+</div> -->
+  <!-- <app-footer-component
+  [totalResult]="products().length"
+  (selectedBy)="showResultBy($event)"
+/> -->
+</div>
