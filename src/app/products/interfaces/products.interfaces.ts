@@ -1,5 +1,9 @@
 export interface ProductsResponse {
   data: Product[];
+  message?: string | undefined;
+}
+export interface DeleteProductsResponse {
+  message?: string | undefined;
 }
 
 export interface Product {

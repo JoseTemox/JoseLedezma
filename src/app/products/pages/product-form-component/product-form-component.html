@@ -62,40 +62,55 @@
       </div>
 
       <div class="form-group">
-        <label for="releaseDate">Fecha Liberación</label>
+        <label for="date_release">Fecha Liberación</label>
         <input
           type="date"
-          id="releaseDate"
-          formControlName="releaseDate"
-          [class.has-error]="isControlError('releaseDate')"
+          id="date_release"
+          formControlName="date_release"
+          [class.has-error]="isControlError('date_release')"
         />
-        @if(isControlError('releaseDate') ){
+        @if(isControlError('date_release') ){
 
-        <span class="error-message">{{ errorMessage('releaseDate') }}</span>
+        <span class="error-message">{{ errorMessage('date_release') }}</span>
         }
       </div>
 
       <div class="form-group">
-        <label for="revisionDate">Fecha Revisión</label>
+        <label for="date_revision">Fecha Revisión</label>
         <input
           type="date"
-          id="revisionDate"
-          formControlName="revisionDate"
-          [class.has-error]="registrationForm?.errors"
+          id="date_revision"
+          formControlName="date_revision"
+          [class.has-error]="
+            registrationForm.errors || isControlError('date_revision')
+          "
         />
+        @if(isControlError('date_revision') ){
+
+        <span class="error-message">{{ errorMessage('date_revision') }}</span>
+        } @if(registrationForm.hasError('revisionDate') ){
+
+        <span class="error-message"
+          >La fecha de revision debe ser un año posterior a la fecha de
+          liberaion</span
+        >
+        }
       </div>
     </div>
 
     <div class="form-actions">
-      <button type="button" class="btn btn-secondary" (click)="onReset()">
+      <button
+        [disabled]="isLoading()"
+        type="button"
+        class="btn btn-secondary"
+        (click)="onReset()"
+      >
         Reiniciar
       </button>
-      <button type="submit" class="btn btn-primary">Enviar</button>
+      <button [disabled]="isLoading()" type="submit" class="btn btn-primary">
+        Enviar
+      </button>
       <!-- [disabled]="registrationForm.invalid" -->
     </div>
   </form>
 </div>
-<p>
-  {{ registrationForm.errors | json }}
-</p>
-<!-- </div> -->

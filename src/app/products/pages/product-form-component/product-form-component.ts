@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { AbsoluteSourceSpan } from '@angular/compiler';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, signal } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -11,8 +11,11 @@ import {
 } from '@angular/forms';
 import {
   releaseDateValidator,
+  verifyIdExist,
   yearVerification,
 } from '../../shared/globals-definitions/forms-functions';
+import { ProductWebServices } from '../../services/product-web-services.service';
+import { finalize, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-product-form-component',
@@ -20,17 +23,24 @@ import {
   templateUrl: './product-form-component.html',
   styleUrl: './product-form-component.scss',
 })
-export class ProductFormComponent {
+export class ProductFormComponent implements OnDestroy {
   private readonly fb = inject(FormBuilder);
+  private readonly productService = inject(ProductWebServices);
+  public isLoading = signal(false);
+  private readonly onDestroy$ = new Subject<void>();
   registrationForm: FormGroup = this.fb.group(
     {
       id: [
         null,
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(10),
-        ],
+        {
+          validators: [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(10),
+          ],
+          asyncValidators: [verifyIdExist(this.productService)],
+          updateOn: 'blur',
+        },
       ],
       name: [
         null,
@@ -49,11 +59,16 @@ export class ProductFormComponent {
         ],
       ],
       logo: [null, Validators.required],
-      releaseDate: [null, [Validators.required, releaseDateValidator]],
-      revisionDate: [null],
+      date_release: [null, [Validators.required, releaseDateValidator]],
+      date_revision: [null, Validators.required],
     },
-    { validators: [yearVerification('releaseDate', 'revisionDate')] }
+    { validators: [yearVerification('date_release', 'date_revision')] }
   );
+
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
+  }
 
   errorMessages = {
     required: () => 'Este Campo es requerido',
@@ -62,15 +77,25 @@ export class ProductFormComponent {
   };
 
   onReset() {
-    console.log('----------');
+    this.registrationForm.reset();
   }
   onSubmit() {
     this.registrationForm.markAllAsTouched();
+
+    if (this.registrationForm.value) {
+      this.isLoading.set(true);
+      this.productService
+        .createProduct(this.registrationForm.value)
+        .pipe(
+          finalize(() => this.isLoading.set(false)),
+          takeUntil(this.onDestroy$)
+        )
+        .subscribe((resp) => console.log('productoCreado'));
+    }
   }
 
   errorMessage(control: string, min?: number, max?: number) {
     const fieldControl = this.registrationForm.get(control);
-    console.log(control, '-->', fieldControl?.errors);
     if (fieldControl?.hasError('required')) {
       return 'Este Campo es requerido.';
     }
@@ -82,6 +107,9 @@ export class ProductFormComponent {
     }
     if (fieldControl?.hasError('revisionReleaseDate')) {
       return `La fecha dee ser mayor o igual a la fecha actual`;
+    }
+    if (fieldControl?.hasError('existProduct')) {
+      return `Id existente`;
     }
     return '';
   }

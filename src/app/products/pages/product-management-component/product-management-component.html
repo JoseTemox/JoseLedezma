@@ -38,7 +38,12 @@
 
         <td>
           <!-- <button class="options-button">...</button> -->
-          <app-product-drop-down-menu />
+          <!-- <app-product-drop-down-menu /> -->
+          <app-drop-down-menu
+            [product]="product"
+            (edit)="onEditProduct($event)"
+            (delete)="onDeleteProduct($event)"
+          />
         </td>
         }
       </tr>

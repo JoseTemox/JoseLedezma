@@ -6,3 +6,7 @@ export enum UrlFront {
 export enum UrlProducts {
   PRODUCTS = 'products',
 }
+
+export enum UrlChildProducts {
+  VERIFICATION = 'verification',
+}

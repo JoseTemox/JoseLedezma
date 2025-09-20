@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProductDropDownMenu } from './product-drop-down-menu';
+import { DropDownMenu } from './drop-down-menu';
 
-describe('ProductDropDownMenu', () => {
-  let component: ProductDropDownMenu;
-  let fixture: ComponentFixture<ProductDropDownMenu>;
+describe('DropDownMenu', () => {
+  let component: DropDownMenu;
+  let fixture: ComponentFixture<DropDownMenu>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProductDropDownMenu]
+      imports: [DropDownMenu]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ProductDropDownMenu);
+    fixture = TestBed.createComponent(DropDownMenu);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
