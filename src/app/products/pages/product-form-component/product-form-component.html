@@ -9,23 +9,26 @@
           type="text"
           id="id"
           formControlName="id"
-          [class.has-error]="
-            registrationForm.get('id')?.invalid &&
-            (registrationForm.get('id')?.dirty ||
-              registrationForm.get('id')?.touched)
-          "
+          [class.has-error]="isControlError('id')"
         />
-        @if(registrationForm.get('id')?.invalid &&
-        (registrationForm.get('id')?.dirty ||
-        registrationForm.get('id')?.touched)){
+        @if(isControlError('id')){
 
-        <span class="error-message">ID no válido!</span>
+        <span class="error-message">{{ errorMessage('id', 3, 10) }}</span>
         }
       </div>
 
       <div class="form-group">
         <label for="name">Nombre</label>
-        <input type="text" id="name" formControlName="name" />
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          [class.has-error]="isControlError('name')"
+        />
+        @if(isControlError('name')){
+
+        <span class="error-message">{{ errorMessage('id', 5, 100) }}</span>
+        }
       </div>
 
       <div class="form-group">
@@ -34,17 +37,13 @@
           type="text"
           id="description"
           formControlName="description"
-          [class.has-error]="
-            registrationForm.get('description')?.invalid &&
-            (registrationForm.get('description')?.dirty ||
-              registrationForm.get('description')?.touched)
-          "
+          [class.has-error]="isControlError('description')"
         />
-        @if(registrationForm.get('description')?.invalid &&
-        (registrationForm.get('description')?.dirty ||
-        registrationForm.get('description')?.touched) ){
+        @if(isControlError('description') ){
 
-        <span class="error-message">Este campo es requerido!</span>
+        <span class="error-message">{{
+          errorMessage('description', 10, 200)
+        }}</span>
         }
       </div>
 
@@ -54,28 +53,36 @@
           type="text"
           id="logo"
           formControlName="logo"
-          [class.has-error]="
-            registrationForm.get('logo')?.invalid &&
-            (registrationForm.get('logo')?.dirty ||
-              registrationForm.get('logo')?.touched)
-          "
+          [class.has-error]="isControlError('logo')"
         />
-        @if(registrationForm.get('logo')?.invalid &&
-        (registrationForm.get('logo')?.dirty ||
-        registrationForm.get('logo')?.touched) ){
+        @if(isControlError('logo') ){
 
-        <span class="error-message">Este campo es requerido!</span>
+        <span class="error-message">{{ errorMessage('logo') }}</span>
         }
       </div>
 
       <div class="form-group">
         <label for="releaseDate">Fecha Liberación</label>
-        <input type="date" id="releaseDate" formControlName="releaseDate" />
+        <input
+          type="date"
+          id="releaseDate"
+          formControlName="releaseDate"
+          [class.has-error]="isControlError('releaseDate')"
+        />
+        @if(isControlError('releaseDate') ){
+
+        <span class="error-message">{{ errorMessage('releaseDate') }}</span>
+        }
       </div>
 
       <div class="form-group">
         <label for="revisionDate">Fecha Revisión</label>
-        <input type="date" id="revisionDate" formControlName="revisionDate" />
+        <input
+          type="date"
+          id="revisionDate"
+          formControlName="revisionDate"
+          [class.has-error]="registrationForm?.errors"
+        />
       </div>
     </div>
 
@@ -83,14 +90,12 @@
       <button type="button" class="btn btn-secondary" (click)="onReset()">
         Reiniciar
       </button>
-      <button
-        type="submit"
-        class="btn btn-primary"
-        [disabled]="registrationForm.invalid"
-      >
-        Enviar
-      </button>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+      <!-- [disabled]="registrationForm.invalid" -->
     </div>
   </form>
 </div>
+<p>
+  {{ registrationForm.errors | json }}
+</p>
 <!-- </div> -->
