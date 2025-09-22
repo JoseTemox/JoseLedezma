@@ -1,0 +1,14 @@
+.main-container {
+  margin: 30px;
+  background-color: #f4f6f9; //color gris de todo el fondo
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 80px 20px 20px 20px;
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    margin: 5px;
+    padding: 10 0 20px 0px;
+  }
+}

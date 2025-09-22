@@ -1,0 +1,28 @@
+<footer class="app-footer">
+  <div class="footer-content">
+    <div class="navigation-buttons">
+      @if (showBack()) {
+        <button class="nav-button" (click)="navigateToLeft()">
+          &lt; Atras
+        </button>
+      }
+      @if (!showBack()) {
+        <button class="nav-button" (click)="navigateToRight()">
+          Siguiente &gt;
+        </button>
+      }
+    </div>
+
+    <div class="info-section">
+      <span>Versión: {{ version }}</span>
+      <span>Desarrollado por:</span>
+      <span
+        ><a [href]="url" target="_blank"> {{ developerName }}</a>
+        |
+      </span>
+      <span>
+        <a [href]="'mailto:' + developerEmail">{{ developerEmail }}</a>
+      </span>
+    </div>
+  </div>
+</footer>

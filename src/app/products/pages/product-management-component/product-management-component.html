@@ -1,0 +1,108 @@
+<div class="toolbar">
+  <form [formGroup]="searchForm" class="search-input">
+    <input type="text" placeholder="Buscar" formControlName="search" />
+  </form>
+  @if(isAdminMode()){
+
+  <button class="add-button" (click)="newProduct()">Agregar</button>
+  }
+</div>
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Logo</th>
+        <th>Nombre del producto</th>
+        <th>
+          Descripción
+          <app-svg-component />
+        </th>
+        <th>Fecha de liberación <app-svg-component /></th>
+        <th>Fecha de reestructuración <app-svg-component /></th>
+        @if(isAdminMode()){
+
+        <th></th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (product of pageData(); track product) {
+
+      <tr>
+        <td>
+          <div class="logo-circle">
+            <a [href]="product.logo" target="_blank">Link</a>
+          </div>
+        </td>
+        <td>{{ product.name }}</td>
+        <td>
+          {{ product.description }}
+        </td>
+        <td>{{ product.date_release }}</td>
+        <td>{{ product.date_revision }}</td>
+        @if(isAdminMode()){
+
+        <td>
+          <app-drop-down-menu
+            [product]="product"
+            (edit)="onEditProduct($event)"
+            (delete)="onDeleteProduct($event)"
+          />
+        </td>
+        }
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+<div class="footer-pagination">
+  <div class="results-info">
+    <span>{{ visibleItemsRange }}</span>
+  </div>
+  <button
+    (click)="goToPage(1)"
+    [disabled]="currentPage === 1"
+    class="page-button"
+  >
+    &lt;&lt;
+  </button>
+  <button
+    (click)="goToPage(currentPage - 1)"
+    [disabled]="currentPage === 1"
+    class="page-button"
+  >
+    &lt;
+  </button>
+
+  <span class="page-indicator"
+    >Página {{ currentPage }} de {{ totalPages }}</span
+  >
+
+  <button
+    (click)="goToPage(currentPage + 1)"
+    [disabled]="currentPage === totalPages"
+    class="page-button"
+  >
+    &gt;
+  </button>
+  <button
+    (click)="goToPage(totalPages)"
+    [disabled]="currentPage === totalPages"
+    class="page-button"
+  >
+    &gt;&gt;
+  </button>
+</div>
+
+<div class="footer-pagination">
+  <span>{{ totalItems }} Resultados</span>
+  <select [ngModel]="pageSize" (change)="pageSizeChange($event)">
+    @for (option of pageSizeOptions; track $index) {
+
+    <option [value]="option">
+      {{ option }}
+    </option>
+    }
+  </select>
+</div>
+<app-footer />

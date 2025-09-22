@@ -1,0 +1,60 @@
+@switch (svgType()) { @case (TypeSvg.Info) {
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  x="0px"
+  y="0px"
+  [style.width.px]="width()"
+  [style.height.px]="height()"
+  viewBox="0,0,256,256"
+>
+  <g
+    fill="none"
+    fill-rule="nonzero"
+    stroke="none"
+    stroke-width="1"
+    stroke-linecap="butt"
+    stroke-linejoin="miter"
+    stroke-miterlimit="10"
+    stroke-dasharray=""
+    stroke-dashoffset="0"
+    font-family="none"
+    font-weight="none"
+    font-size="none"
+    text-anchor="none"
+    style="mix-blend-mode: normal"
+  >
+    <g transform="scale(6.4,6.4)">
+      <path
+        d="M20,38.5c-10.201,0 -18.5,-8.299 -18.5,-18.5c0,-10.201 8.299,-18.5 18.5,-18.5c10.201,0 18.5,8.299 18.5,18.5c0,10.201 -8.299,18.5 -18.5,18.5z"
+        fill="#b1b3b7"
+      ></path>
+      <path
+        d="M20,2c9.925,0 18,8.075 18,18c0,9.925 -8.075,18 -18,18c-9.925,0 -18,-8.075 -18,-18c0,-9.925 8.075,-18 18,-18M20,1c-10.493,0 -19,8.507 -19,19c0,10.493 8.507,19 19,19c10.493,0 19,-8.507 19,-19c0,-10.493 -8.507,-19 -19,-19z"
+        fill="#b1b4b7"
+      ></path>
+      <path
+        d="M20,10c-1.10457,0 -2,0.89543 -2,2c0,1.10457 0.89543,2 2,2c1.10457,0 2,-0.89543 2,-2c0,-1.10457 -0.89543,-2 -2,-2z"
+        fill="#ffffff"
+      ></path>
+      <g fill="#ffffff"><path d="M22,28v-12h-5v1h1v11h-1v1h6v-1z"></path></g>
+    </g>
+  </g>
+</svg>
+} @case (TypeSvg.Bank) {
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  [style.width.px]="width()"
+  [style.height.px]="height()"
+  viewBox="0 0 72 46"
+>
+  <image
+    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAAAuCAYAAACLQF8AAAAEeUlEQVR4AeyYa0wUVxTH/3N3FyGh1WiJtPWBqFSM9GGRQoGY0NikqaBosbUWW2rEGthWakFiKVpKY1uxQS0Fm2pY0iao+AAUFI0a3ygRn/hCAoqvmPhCfO3O4L2bYPxAdmaZmR0l94YDZM89Z8753bvnnjukgw+XBAj4cEmAA3KJB+CAOCAZAjJqvoM4IBkCMmq+gzggGQIyasN2kCRJOH2uFYUlW5FXWK5KlhRVoGzTfty+0y6TrvtqQwDR1hVHTzYj0boUCxaXYtHy9epk2TrM+WkV5uWWUEj33KfgwsIQQHaHiLLNB9DSegOx48Zg/reTVcn3s+IQMKg/tu05jmMNLS7SdV9lCCDRIeHO3ft4ydcH0yZFY+43cepk9gREho2Ag/q91/7QfQouLAwBBAEgRIDJRGA2qw+B+TKbTNBjuB+dBlH08rLg0wmRSE4ch6Chr2vgUT8XhgBiKx4VFoz02RPh79dHv+w08KwrIHZaiaIEhyiqFpH6Yf40yNktF7oBYn3OuaarKF69A38WVaqTFZUoKK7GkRNNYH7dylDlZN0A3bh5F+k5NixcshrLV1Wpk5VV+P2vDfjhZ5uzf5I6OlSmrdxcN0BNLddxoO4sQt8aisXZ05G34KtuC7OP+3AMTp65iOodRyDSr6zyFNXN1A2Q3S6CNYShbw7DlNhIJMRGdFuYfUzUKGdbcLutHZLYA3ZQ57oRQpw9DxEEdCUi7arb2h7g8SM7a4+6nEMItSUEgiDA04N4+oGdz2PF9tTZS8imd7EZaQX4jt6lDtU3wkGBKT2t2LxnpdO3ln8NA3T56k3MyijCipIanG5sRUXNYcxM/xu7DzZAaQ1mPrbsrMfm7XVooLDNJgIfb4uWfGAIIJG+6mCvJ1hSrPj+XzAH81LjceXaLayt3A+mV5Klbc1OWH9cibkLbaitP4+gwFcREhygxFTxHEMA2e0ONNObvI+PF6bEvY+3Rw2ht/p34d3Lgsbma+iQlBXh6PCRSBgfTiUCmdZ4FCxKhl+/l6HlMASQxWzGwNdewYOHj1FWdRD1tAGsqKnDI1qohwX4Q1AYVVTYCORkTEVu5udISfoIgYP7a8nG6UthKM65mv1it/jET8ZiZNBAlG85hI+/+BW5+WU0QX9MjY+GWeHNnNCTzWIxgwmzEQTtTzlPAOoSLPsqFP6WjLSZ4zE6ZAgSJ49Ffk4SwkcPN+Q47zJI+qFhgNjqhwQPRlZaAjb9l4X8X75GROgb8KKvQmhcz82P7oAkWnBZr6ImY2bf427z3rQfYS/G9tSeQunGvSgt39d9ofZbdx2Fg97B+vb2BTHpvq5P11O3JwUM8MN7tJ4cPnYBqfP/RUrmP90WZr+huhaBg/wRExVCi7huYT8F0/mPbk/y69cbxUutyMv+EjOmfaBaMlImwrbMirB3PFvEdQMkCAL69vFF0mcx+CNrumrJTJ2E4OEDPH7C6QYIPWRwQDILyQFxQDIEZNR8B3FAMgRk1HwHvZCAZIL2pJrvIBnaHBAHJENARv0EAAD//4UdjkEAAAAGSURBVAMA+enBapS5tyUAAAAASUVORK5CYII="
+    x="0"
+    y="0"
+    width="72"
+    height="46"
+  />
+</svg>
+} @case (TypeSvg.Delete) { Case B. } @case (TypeSvg.Edit) { Case B. } @default {
+Default case. } }

@@ -1,0 +1,73 @@
+@use 'variables' as *;
+
+.app-footer {
+  bottom: 10;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  flex-direction: column;
+}
+
+.navigation-buttons {
+  display: flex;
+  gap: 10px;
+  flex-grow: 1;
+  margin-top: 30px;
+}
+
+.nav-button {
+  background-color: $secondary-color;
+  color: $tertiary-color;
+  border: none;
+  font-weight: bold;
+  border-radius: $btn-border-radius;
+  padding: $btn-padding;
+  cursor: pointer;
+  display: flex;
+  transition: background-color 0.3s ease;
+  width: 120px;
+  justify-content: center;
+
+  &:hover {
+    background-color: $hover-btn-color;
+  }
+  &:active {
+    background-color: #004085;
+  }
+}
+
+.info-section {
+  display: flex;
+  gap: 20px;
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 30px;
+}
+
+.info-section a {
+  color: #007bff;
+  text-decoration: none;
+  padding-bottom: 20px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: 979px) {
+  .info-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

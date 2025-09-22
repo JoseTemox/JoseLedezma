@@ -1,0 +1,40 @@
+<div class="modal-overlay" [class.show]="isOpen()" (click)="onOverlayClick()">
+  <div
+    class="modal-container"
+    [class.show]="isOpen()"
+    (click)="$event.stopPropagation()"
+  >
+    <div class="modal-content" [ngClass]="data?.customClass || ''">
+      @if(data?.title){
+
+      <div class="modal-header">
+        <h2 class="modal-title">{{ data?.title }}</h2>
+      </div>
+      }
+
+      <div class="modal-body">
+        <p>
+          {{ data?.message }}
+        </p>
+      </div>
+
+      <div class="modal-footer">
+        @if (data?.showCancellationButton) {
+        <button class="btn btn-cancel" (click)="onCancel()">
+          {{ data?.cancelButtonText || 'Cancelar' }}
+        </button>
+
+        } @if(data?.showConfirmButton){
+
+        <button
+          class="btn btn-confirm"
+          [ngClass]="getTypeClass()"
+          (click)="onConfirm()"
+        >
+          {{ data?.confirmButtonText || 'Aceptar' }}
+        </button>
+        }
+      </div>
+    </div>
+  </div>
+</div>

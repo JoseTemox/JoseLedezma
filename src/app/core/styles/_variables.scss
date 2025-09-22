@@ -1,0 +1,14 @@
+@use 'sass:color';
+
+$primary-color: #ffd700;
+$secondary-color: #ccc;
+$tertiary-color: #333;
+$error-color: #e53935;
+$background-color: #f0f2f5;
+$card-background: #ffffff;
+$border-color: #ccc;
+$border-error: #e53935;
+$btn-border-radius: 4px;
+$btn-padding: 10px 20px;
+
+$hover-btn-color: color.adjust($primary-color, $lightness: -10%);

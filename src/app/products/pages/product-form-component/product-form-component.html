@@ -1,0 +1,115 @@
+<div class="form-card">
+  <h2 class="text-bold">Formulario de Registro</h2>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="form-fields">
+      <div class="form-group">
+        <label for="id">ID</label>
+        <input
+          type="text"
+          id="id"
+          formControlName="id"
+          [class.has-error]="isControlError('id')"
+        />
+        @if(isControlError('id')){
+
+        <span class="error-message">{{ errorMessage('id', 3, 10) }}</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          [class.has-error]="isControlError('name')"
+        />
+        @if(isControlError('name')){
+
+        <span class="error-message">{{ errorMessage('name', 5, 100) }}</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="description">Descripción</label>
+        <input
+          type="text"
+          id="description"
+          formControlName="description"
+          [class.has-error]="isControlError('description')"
+        />
+        @if(isControlError('description') ){
+
+        <span class="error-message">{{
+          errorMessage('description', 10, 200)
+        }}</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="logo">Logo</label>
+        <input
+          type="text"
+          id="logo"
+          formControlName="logo"
+          [class.has-error]="isControlError('logo')"
+        />
+        @if(isControlError('logo') ){
+
+        <span class="error-message">{{ errorMessage('logo') }}</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="date_release">Fecha Liberación</label>
+        <input
+          type="date"
+          id="date_release"
+          formControlName="date_release"
+          [class.has-error]="isControlError('date_release')"
+        />
+        @if(isControlError('date_release') ){
+
+        <span class="error-message">{{ errorMessage('date_release') }}</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="date_revision">Fecha Revisión</label>
+        <input
+          type="date"
+          id="date_revision"
+          formControlName="date_revision"
+          [class.has-error]="
+            registrationForm.errors || isControlError('date_revision')
+          "
+        />
+        @if(isControlError('date_revision') ){
+
+        <span class="error-message">{{ errorMessage('date_revision') }}</span>
+        } @if(registrationForm.hasError('revisionDate') ){
+
+        <span class="error-message"
+          >La fecha de revision debe ser un año posterior a la fecha de
+          liberaion</span
+        >
+        }
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button
+        [disabled]="isLoading()"
+        type="button"
+        class="btn btn-secondary"
+        (click)="onReset()"
+      >
+        Reiniciar
+      </button>
+      <button [disabled]="isLoading()" type="submit" class="btn btn-primary">
+        {{ navigationID ? 'Actualizar' : 'Enviar' }}
+      </button>
+    </div>
+  </form>
+</div>
+<app-footer />
